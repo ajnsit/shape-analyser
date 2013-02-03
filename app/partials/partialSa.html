@@ -1,0 +1,36 @@
+<div class="container">
+
+  <div class="row">
+    <div class="span12">
+      <h2>Shape Analyser</h2>
+      <form name="myForm" class="well form-horizontal" ng-submit="submit()">
+        <div class="control-group">
+          <label class="control-label" for="inputFile">Image File URL:</label>
+          <div class="controls">
+            <input ng-model="imgurl" required type="text" id="inputFile" placeholder="URL" ng-pattern="/[^ ].+\.(png|ppm|jpg)/">
+            <span class="help-inline">Relative or absolute (Absolute can be http:// or file://)</span>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="inputAnalyser">Analysis:</label>
+          <div class="controls">
+            <select ng-model="analysis" name="inputAnalysis" required ng-options="analyser.name for analyser in analysers"> </select>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button ng-disabled="!isValidFile()" type="submit" class="btn btn-primary">Analyse</button>
+          <input ng-click="performanceTest()" class="btn" type="button" value="Performance Test">
+        </div>
+      </form>
+    </div><!-- .span12 -->
+  </div><!-- .row -->
+
+
+  <div class="row">
+    <div class="span12">
+      <h3>{{analysis.name}}</h3>
+      <h4>Result: <span id="result">{{ret}}</span></h4>
+      <canvas id="canvas"></canvas>
+    </div><!-- .span12 -->
+  </div><!-- .row -->
+
